@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>تسجيل الدخول - مكتبة رائف</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4fbf6,
+                    #ffffff
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px 30px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(36, 122, 74, 0.12);
+
+            border: 1px solid #e8eee9;
+
+            animation:
+                loginCard 0.6s ease;
+        }
+
+        @keyframes loginCard {
+
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        .logo {
+            width: 75px;
+            height: 75px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 20px;
+
+            background: #247a4a;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 38px;
+
+            box-shadow:
+                0 8px 20px
+                rgba(36, 122, 74, 0.2);
+        }
+
+        .login-title {
+            text-align: center;
+            color: #247a4a;
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+
+            padding: 14px 15px;
+
+            border: 1px solid #dce5df;
+            border-radius: 11px;
+
+            font-size: 16px;
+
+            outline: none;
+
+            transition: 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #247a4a;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(36, 122, 74, 0.1);
+        }
+
+        .login-btn {
+            width: 100%;
+
+            border: none;
+
+            padding: 14px;
+
+            border-radius: 11px;
+
+            background: #247a4a;
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+
+            margin-top: 5px;
+        }
+
+        .login-btn:hover {
+            background: #1b633c;
+            transform: translateY(-2px);
+        }
+
+        #loginMessage {
+            text-align: center;
+
+            margin-top: 18px;
+
+            font-size: 14px;
+
+            min-height: 20px;
+        }
+
+        .back-home {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #247a4a;
+
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+        .back-home:hover {
+            color: #e67e22;
+        }
+
+        @media (max-width: 480px) {
+
+            .login-card {
+                padding: 30px 20px;
+                border-radius: 17px;
+            }
+
+            .login-title {
+                font-size: 24px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+            <div class="logo">
+                📚
+            </div>
+
+            <h1 class="login-title">
+                مكتبة رائف
+            </h1>
+
+            <p class="login-subtitle">
+                تسجيل الدخول إلى لوحة التحكم
+            </p>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="email">
+                        البريد الإلكتروني
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="أدخل البريد الإلكتروني"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="password">
+                        كلمة المرور
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="أدخل كلمة المرور"
+                        required
+                    >
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                >
+                    🔐 تسجيل الدخول
+                </button>
+
+                <p id="loginMessage"></p>
+
+            </form>
+
+            <a
+                href="index.html"
+                class="back-home"
+            >
+                ← العودة إلى الموقع
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <script type="module">
+
+        import { auth }
+        from "./firebase-config.js";
+
+        import {
+            signInWithEmailAndPassword
+        }
+        from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+
+        const loginForm =
+            document.getElementById(
+                "loginForm"
+            );
+
+        const loginMessage =
+            document.getElementById(
+                "loginMessage"
+            );
+
+
+        loginForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+                const email =
+                    document.getElementById(
+                        "email"
+                    ).value.trim();
+
+                const password =
+                    document.getElementById(
+                        "password"
+                    ).value;
+
+
+                loginMessage.textContent =
+                    "جاري تسجيل الدخول...";
+
+
+                try {
+
+                    await signInWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+                    loginMessage.textContent =
+                        "✅ تم تسجيل الدخول بنجاح";
+
+                    window.location.href =
+                        "admin.html";
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    loginMessage.textContent =
+                        "❌ البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

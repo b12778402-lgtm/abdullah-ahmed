@@ -2,405 +2,768 @@
 <html lang="ar" dir="rtl">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>عبدالله أحمد | Personal Website</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <title>مكتبة رائف</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
-    <!-- ================= HEADER ================= -->
+
+    <!-- =========================
+         الهيدر
+    ========================== -->
 
     <header class="header">
 
-                    <div class="container nav-container">
-                            <div class="logo">
-                <img src="profile.jpg.jpg" alt="Abdullah Ahmed">
-                <span>Abdullah</span>
+        <div class="container header-content">
+
+
+            <!-- الشعار -->
+<a href="#home" class="logo">
+    <img src="raef-logo.png.png" alt="مكتبة رائف">
+    <span>مكتبة رائف</span>
+</a>
+<!-- البحث -->
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="ابحث عن منتج..."
+                >
+
+                <button
+                    type="button"
+                    id="searchBtn"
+                >
+                    🔍
+                </button>
+
             </div>
-                        <nav class="navbar">
 
-                <a href="#home">الرئيسية</a>
-                <a href="#about">عنّي</a>
-                <a href="#skills">مهاراتي</a>
-                <a href="#contact">تواصل معي</a>
 
-            </nav>
+            <!-- =========================
+                 زر السلة
+            ========================== -->
 
-            <button class="menu-btn" id="menuBtn">
+            <button
+                class="cart-btn"
+                id="cartBtn"
+                type="button"
+            >
+
+                🛒
+
+                <span class="cart-count">
+                    0
+                </span>
+
+            </button>
+
+            <button
+    class="theme-btn"
+    id="themeBtn"
+    type="button"
+    aria-label="تغيير الوضع"
+>
+    🌙
+</button>
+
+<button class="menu-btn" id="menuBtn" type="button">☰</button>
+            <!-- =========================
+                 خلفية السلة
+            ========================== -->
+
+            <div
+                class="cart-overlay"
+                id="cartOverlay"
+            ></div>
+
+
+            <!-- =========================
+                 السلة الجانبية
+            ========================== -->
+
+            <div
+                class="cart-panel"
+                id="cartPanel"
+            >
+
+
+                <!-- رأس السلة -->
+
+                <div class="cart-header">
+
+                    <h3>
+                        🛒 سلة المشتريات
+                    </h3>
+
+                    <button
+                        id="closeCart"
+                        type="button"
+                    >
+                        ✕
+                    </button>
+
+                </div>
+
+
+                <!-- =========================
+                     محتوى السلة
+                ========================== -->
+
+                <div
+                    class="cart-items"
+                    id="cartItems"
+                >
+
+                    <div class="empty-cart">
+
+                        <div class="empty-cart-icon">
+                            🛒
+                        </div>
+
+                        <h3>
+                            السلة فارغة
+                        </h3>
+
+                        <p>
+                            أضف بعض المنتجات إلى السلة
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     أسفل السلة
+                ========================== -->
+
+                <div class="cart-footer">
+
+                    <div class="cart-total">
+
+                        <span>
+                            الإجمالي:
+                        </span>
+
+                        <strong>
+
+                            <span id="cartTotal">
+                                0
+                            </span>
+
+                            جنيه
+
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="checkout-btn"
+                        id="checkoutBtn"
+                        type="button"
+                    >
+                        إتمام الطلب
+                    </button>
+
+                </div>
+
+
+                <!-- =========================
+                     نموذج إتمام الطلب
+                ========================== -->
+
+                <div 
+    class="checkout-panel" 
+    id="checkoutPanel"
+>
+
+    <div class="checkout-header">
+
+        <h3>
+            📦 إتمام الطلب
+        </h3>
+
+        <button
+            id="closeCheckout"
+            type="button"
+        >
+            ✕
+        </button>
+
+    </div>
+
+
+    <div class="checkout-content">
+
+        <label for="customerName">
+            الاسم
+        </label>
+
+        <input
+            type="text"
+            id="customerName"
+            placeholder="اكتب اسمك"
+        >
+
+
+        <label for="customerPhone">
+            رقم الهاتف
+        </label>
+
+        <input
+            type="tel"
+            id="customerPhone"
+            placeholder="اكتب رقم الهاتف"
+        >
+
+
+        <div class="order-summary">
+
+            <h4>
+                ملخص الطلب
+            </h4>
+
+            <div id="checkoutItems"></div>
+
+
+            <div class="checkout-total">
+
+                <span>
+                    الإجمالي:
+                </span>
+
+                <strong id="checkoutTotal">
+                    0 جنيه
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- زر تأكيد الطلب -->
+
+        <button
+            class="confirm-order-btn"
+            id="confirmOrder"
+            type="button"
+        >
+            تأكيد الطلب
+        </button>
+
+    </div>
+
+</div>
+
+
+            <!-- زر القائمة للموبايل -->
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                type="button"
+            >
                 ☰
             </button>
+
 
         </div>
 
     </header>
 
-<!-- ===============================
-     Hero Section
-================================ -->
 
-<section class="hero" id="home">
+    <!-- =========================
+         القائمة
+    ========================== -->
 
-    <div class="hero-bg"></div>
+    <nav
+        class="navbar"
+        id="navbar"
+    >
 
-    <div class="container hero-content">
+        <div class="container">
 
-        <!-- النص -->
-        <div class="hero-text">
+            <a href="#home">
+                الرئيسية
+            </a>
 
-            <span class="hero-small-title">
-                مرحبًا، أنا
-            </span>
+            <a href="#categories">
+                الأقسام
+            </a>
 
-            <h1>
-                عبدالله أحمد
-            </h1>
+            <a href="#products">
+                المنتجات
+            </a>
 
-            <h2>
-               Marine Surveying &  Geomatics 
-            </h2>
+            <a href="#offers">
+                العروض
+            </a>
 
-            <p class="hero-arabic-title">
-                 المساحة البحريةوالجيوماتكس
-            </p>
+            <a href="#copy">
+                الطباعة والتصوير
+            </a>
 
-            <p class="hero-description">
-                طالب يدرس فى برنامج المساحة البحرية و الجيوماتكس 
-                وأسعى إلى تطوير مهاراتي وبناء مستقبلي في هذا المجال.
-            </p>
+            <a href="#about">
+                عن المكتبة
+            </a>
 
-            <div class="hero-buttons">
-
-                <a href="#about" class="btn primary-btn">
-                    تعرف عليّ
-                </a>
-
-                <a href="#contact" class="btn secondary-btn">
-                    تواصل معي
-                </a>
-
-            </div>
+            <a href="#contact">
+                تواصل معنا
+            </a>
 
         </div>
 
+    </nav>
 
-        <!-- الصورة -->
-       <div class="hero-image">
 
-    <div class="image-circle">
+    <!-- =========================
+         المحتوى الرئيسي
+    ========================== -->
 
-        <img src="profile.jpg.jpg" alt="عبدالله أحمد">
+    <main>
 
-    </div>
 
-</div>   </div>
+        <!-- =========================
+             الرئيسية
+        ========================== -->
 
-    </div>
+        <section
+            class="hero"
+            id="home"
+        >
 
-</section>
-    
+            <div class="hero-glow hero-glow-1"></div>
 
+            <div class="hero-glow hero-glow-2"></div>
 
-        <!-- ================= ABOUT ================= -->
 
-        <section class="about section" id="about">
+            <div class="container hero-content">
 
-            <div class="container">
 
-                <div class="section-title">
+                <!-- النص -->
 
-                    <span>ABOUT ME</span>
+                <div class="hero-text">
 
-                    <h2>
-                        عنّي
-                    </h2>
+                    <span class="hero-badge">
+                        ✨ كل احتياجاتك في مكان واحد
+                    </span>
 
-                </div>
 
-                <div class="about-content">
+                    <h1>
 
-                    <div class="about-text">
+                        أهلاً بيك في
 
-                        <h3>
-                            نبذة بسيطة عني
-                        </h3>
+                        <span>
+                            مكتبة رائف
+                        </span>
 
-                        <p>
-                            أنا عبدالله أحمد، طالب  " بكليةالاداب" برنامج
-                     المساحة البحريه والجيوماتكس
-                        </p>
+                    </h1>
 
-                        <p>
-                            أعمل حاليًا على تطوير معرفتي ومهاراتي
-                            في مجالات المساحة البحريه والخرائط والجيوماتكس،
-                            وأسعى إلى اكتساب الخبرة العملية
-                        وبناء مستقبل مهني في هذا المجال.
-                      الى جانب ذالك لدى شغف بالتسويق الMarketing 📈
-                    </p>
-
-                    </div>
-
-                    <div class="about-card">
-
-                        <div class="info-item">
-                            <span>المجال</span>
-                            <strong>  Surveying  </strong>
-                        </div>
-
-                        <div class="info-item">
-                            <span>التخصص</span>
-                            <strong>Geomatics</strong>
-                        </div>
-
-                        <div class="info-item">
-                            <span>الاهتمام</span>
-                            <strong> Marketing  </strong>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- ================= SKILLS ================= -->
-
-<section class="skills section" id="skills">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <span>MY SKILLS</span>
-
-            <h2>
-                مهاراتي
-            </h2>
-
-        </div>
-
-
-        <!-- SKILLS STATISTICS -->
-
-        <div class="skill-statistics">
-
-            <div class="skill-progress">
-
-                <div class="skill-info">
-                    <span>Marine Surveying</span>
-                    <span class="percentage">0%</span>
-                </div>
-
-                <div class="progress-bar">
-                    <span class="progress" data-width="0%"></span>
-                </div>
-
-            </div>
-
-
-            <div class="skill-progress">
-
-                <div class="skill-info">
-                    <span>Geomatics</span>
-                    <span class="percentage">25%</span>
-                </div>
-
-                <div class="progress-bar">
-                    <span class="progress" data-width="25%"></span>
-                </div>
-
-            </div>
-
-
-            <div class="skill-progress">
-
-                <div class="skill-info">
-                    <span>GIS</span>
-                    <span class="percentage">25%</span>
-                </div>
-
-                <div class="progress-bar">
-                    <span class="progress" data-width="25%"></span>
-                </div>
-
-            </div>
-
-
-            <div class="skill-progress">
-
-                <div class="skill-info">
-                    <span>Surveying</span>
-                    <span class="percentage">0%</span>
-                </div>
-
-                <div class="progress-bar">
-                    <span class="progress" data-width="0%"></span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- SKILLS CARDS -->
-
-        <div class="skills-grid">
-
-            <div class="skill-card">
-
-                <div class="skill-icon">
-                    🌊
-                </div>
-
-                <h3>
-                    Marine Surveying
-                </h3>
-
-                <p>
-                    المساحة البحرية وطرق جمع البيانات
-                    والمسح تحت سطح الماء.
-                </p>
-
-            </div>
-
-
-            <div class="skill-card">
-
-                <div class="skill-icon">
-                    🗺️
-                </div>
-
-                <h3>
-                    Geomatics
-                </h3>
-
-                <p>
-                    الجيوماتكس والخرائط والبيانات
-                    والمعلومات المكانية.
-                </p>
-
-            </div>
-
-
-            <div class="skill-card">
-
-                <div class="skill-icon">
-                    📍
-                </div>
-
-                <h3>
-                    Surveying
-                </h3>
-
-                <p>
-                    أعمال الرفع المساحي والإحداثيات
-                    وقياس المواقع.
-                </p>
-
-            </div>
-
-
-            <div class="skill-card">
-
-                <div class="skill-icon">
-                    💻
-                </div>
-
-                <h3>
-                    GIS
-                </h3>
-
-                <p>
-                    نظم المعلومات الجغرافية وتحليل
-                    وعرض البيانات المكانية.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-        <!-- ================= CONTACT ================= -->
-
-        <section class="contact section" id="contact">
-
-            <div class="container">
-
-                <div class="section-title">
-
-                    <span>CONTACT</span>
-
-                    <h2>
-                        تواصل معي
-                    </h2>
-
-                </div>
-
-                <div class="contact-content">
 
                     <p>
-                        يمكنك التواصل معي من خلال حساباتي:
+                        أدوات مدرسية ومكتبية،
+                        إكسسوارات،
+                        منتجات متنوعة وعروض مميزة
+                        بأسعار مناسبة.
                     </p>
-                    <!-- Social Links -->
 
-<div class="hero-social">
 
-    <a href="https://www.facebook.com/bdallhahmdalsyd.816883" target="_blank" aria-label="Facebook">
-        <i class="fa-brands fa-facebook-f"></i>
-    </a>
+                    <div class="hero-buttons">
 
-    <a href="https://www.tiktok.com/@user2091318618071" target="_blank" aria-label="TikTok">
-        <i class="fa-brands fa-tiktok"></i>
-    </a>
+                        <a
+                            href="#products"
+                            class="hero-btn primary"
+                        >
+                            🛒 تسوق الآن
+                        </a>
 
-    <a href="https://wa.me/201122827623" target="_blank" aria-label="WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+
+                        <a
+                            href="#categories"
+                            class="hero-btn secondary"
+                        >
+                            تصفح الأقسام
+                        </a>
+
+                    </div>
+
+
+                    <div class="hero-features">
+
+
+                        <div>
+
+                            <strong>
+                                📚
+                            </strong>
+
+                            <span>
+                                منتجات متنوعة
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                🔥
+                            </strong>
+
+                            <span>
+                                عروض مستمرة
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                ⚡
+                            </strong>
+
+                            <span>
+                                خدمة سريعة
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- الجانب البصري -->
+
+                <div class="hero-visual">
+
+                    <div class="hero-circle"></div>
+
+
+                    <div class="floating-card card-1">
+
+                        📚
+
+                        <span>
+                            أدوات مدرسية
+                        </span>
+
+                    </div>
+
+
+                    <div class="floating-card card-2">
+
+                        🖊️
+
+                        <span>
+                            مستلزمات مكتبية
+                        </span>
+
+                    </div>
+
+
+                    <div class="floating-card card-3">
+
+                        🛍️
+
+                        <span>
+                            أدوات منزلية
+                        </span>
+
+                    </div>
+
+
+<div class="hero-logo">
+
+    <img
+        src="raef-logo.png.png"
+        alt="مكتبة رائف"
+    >
 
 </div>
-                   
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             الأقسام
+        ========================== -->
+
+        <section
+            class="section"
+            id="categories"
+        >
+
+            <div class="container">
+
+                <h2>
+                    الأقسام
+                </h2>
+
+
+                <div
+                    class="categories"
+                    id="categoriesContainer"
+                >
+                    <!-- الأقسام تظهر تلقائيًا -->
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             المنتجات
+        ========================== -->
+
+        <section
+            class="section"
+            id="products"
+        >
+
+            <div class="container">
+
+                <h2>
+                    المنتجات
+                </h2>
+
+
+                <div class="products-filter">
+
+                    <button
+                        id="showAllProducts"
+                        class="filter-btn active"
+                        type="button"
+                    >
+                        كل المنتجات
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="products"
+                    id="productsContainer"
+                >
+
+                    <!-- المنتجات تظهر تلقائيًا من JavaScript -->
 
                 </div>
 
             </div>
 
         </section>
+
+
+        <!-- =========================
+             العروض
+        ========================== -->
+
+        <section
+            class="section offers"
+            id="offers"
+        >
+
+            <div class="container">
+
+                <h2>
+                    🔥 العروض
+                </h2>
+
+
+                <p>
+                    تابع عروض مكتبة رائف الجديدة باستمرار
+                </p>
+
+
+                <div
+                    class="offers-container"
+                    id="offersContainer"
+                >
+                    <!-- العروض تظهر تلقائيًا -->
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             الطباعة والتصوير
+        ========================== -->
+
+        <section
+            class="section copy-section"
+            id="copy"
+        >
+
+            <div class="container">
+
+                <h2>
+                    🖨️ الطباعة والتصوير
+                </h2>
+
+
+                <p>
+                    ارفع ملفك وحدد عدد النسخ
+                    واستلمه من المكتبة.
+                </p>
+
+
+                <button
+                    class="main-btn"
+                    type="button"
+                >
+                    اطلب خدمة الطباعة
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             عن المكتبة
+        ========================== -->
+
+        <section
+            class="section"
+            id="about"
+        >
+
+            <div class="container">
+
+                <h2>
+                    عن مكتبة رائف
+                </h2>
+
+
+                <p class="about-text">
+
+                    مكتبة رائف توفر لك
+                    الأدوات المدرسية
+                    والمستلزمات المكتبية
+                    وإكسسوارات الموبايل
+                    والعطور ومنتجات متنوعة
+                    بأسعار مناسبة.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             التواصل
+        ========================== -->
+
+        <section
+            class="section"
+            id="contact"
+        >
+
+            <div class="container">
+
+                <h2>
+                    تواصل معنا
+                </h2>
+
+
+                <div class="contact-links">
+
+
+                    <a
+                        href="https://wa.me/201155929160"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        واتساب
+                    </a>
+
+
+                    <a
+                        href="https://www.facebook.com/profile.php?id=61567469705410"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        فيسبوك
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
 
     </main>
 
 
-    <!-- ================= FOOTER ================= -->
+    <!-- =========================
+         الفوتر
+    ========================== -->
 
     <footer class="footer">
 
-        <p>
-            © 2026 Abdullah Ahmed
-        </p>
+        <div class="container">
 
-        <p>
-            Geomatics & Marine Surveying
-        </p>
+            <p>
+                © 2026 مكتبة رائف - جميع الحقوق محفوظة
+            </p>
+
+        </div>
 
     </footer>
+
+
+    <!-- =========================
+         رسالة إضافة المنتج
+    ========================== -->
+
+    <div
+        id="topMessage"
+        class="top-message"
+    >
+
+        <span>
+            ✓ تمت إضافة المنتج إلى السلة 🛒
+        </span>
+
+    </div>
 
 
     <!-- JavaScript -->
 
     <script src="script.js"></script>
+
 
 </body>
 

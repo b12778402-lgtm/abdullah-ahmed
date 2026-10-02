@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>الطلبات - مكتبة رائف</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+</head>
+
+
+<body>
+
+    <!-- الهيدر -->
+
+    <header class="admin-header">
+
+        <div class="admin-container">
+
+            <div class="admin-logo">
+                📚 مكتبة رائف
+            </div>
+
+            <div class="admin-title">
+                إدارة الطلبات
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- المحتوى -->
+
+    <main class="admin-container">
+
+        <div class="page-header">
+
+            <div>
+
+                <h1>
+                    📦 الطلبات
+                </h1>
+
+                <p class="admin-welcome">
+                    جميع طلبات العملاء
+                </p>
+
+            </div>
+
+
+            <a href="admin.html" class="back-btn">
+                ← لوحة التحكم
+            </a>
+
+        </div>
+
+
+
+        <div class="orders-search">
+    <input
+        type="search"
+        id="orderSearch"
+        placeholder="🔎 ابحث باسم العميل أو رقم الهاتف..."
+    >
+</div>
+
+
+<div class="orders-filter">
+
+    <button type="button" class="filter-btn active" data-status="الكل">
+        الكل
+    </button>
+
+    <button type="button" class="filter-btn" data-status="جديد">
+        جديد
+    </button>
+
+    <button type="button" class="filter-btn" data-status="جاري التجهيز">
+        جاري التجهيز
+    </button>
+
+    <button type="button" class="filter-btn" data-status="جاهز للاستلام">
+        جاهز للاستلام
+    </button>
+
+    <button type="button" class="filter-btn" data-status="تم الاستلام">
+        تم الاستلام
+    </button>
+
+</div>
+
+<section id="ordersList" class="orders-list">
+
+        <!-- قائمة الطلبات -->
+
+        <section id="ordersList" class="orders-list">
+
+            <!-- الطلبات ستظهر هنا -->
+
+        </section>
+
+
+        <!-- لا توجد طلبات -->
+
+        <div id="noOrders" class="no-orders">
+
+            <span>📦</span>
+
+            <h2>
+                لا توجد طلبات حتى الآن
+            </h2>
+
+            <p>
+                عندما يقوم أحد العملاء بعمل طلب، سيظهر هنا.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <footer class="admin-footer">
+
+        <p>
+            © 2026 مكتبة رائف
+        </p>
+
+    </footer>
+
+
+    <script src="orders.js"></script>
+
+<script type="module">
+    import { auth } from "./firebase-config.js";
+
+    import {
+        onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+    onAuthStateChanged(auth, function (user) {
+        if (!user) {
+            window.location.href = "login.html";
+        }
+    });
+</script>
+
+</body>
+
+</html>

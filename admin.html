@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>لوحة تحكم - مكتبة رائف</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+</head>
+
+
+<body>
+
+    <!-- =========================
+         الهيدر
+    ========================= -->
+
+    <header class="admin-header">
+
+        <div class="admin-container">
+
+            <div class="admin-logo">
+                📚 مكتبة رائف
+            </div>
+
+            <div class="admin-title">
+                لوحة التحكم
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         المحتوى
+    ========================= -->
+
+    <main class="admin-container">
+
+        <h1>
+            لوحة التحكم
+        </h1>
+
+        <p class="admin-welcome">
+            أهلاً بك في لوحة إدارة مكتبة رائف
+        </p>
+
+
+        <!-- =========================
+             الإحصائيات
+        ========================= -->
+
+        <section class="stats">
+
+            <!-- الطلبات -->
+
+            <div class="stat-card">
+
+                <span>📦</span>
+
+                <h3>
+                    الطلبات
+                </h3>
+
+                <strong id="ordersCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- المنتجات -->
+
+            <div class="stat-card">
+
+                <span>🛍️</span>
+
+                <h3>
+                    المنتجات
+                </h3>
+
+                <strong id="productsCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- الأقسام -->
+
+            <div class="stat-card">
+
+                <span>🏷️</span>
+
+                <h3>
+                    الأقسام
+                </h3>
+
+                <strong id="categoriesCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- العروض -->
+
+            <div class="stat-card">
+
+                <span>🔥</span>
+
+                <h3>
+                    العروض
+                </h3>
+
+                <strong id="offersCount">
+                    0
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             أقسام لوحة التحكم
+        ========================= -->
+
+        <section class="admin-menu">
+
+
+            <!-- الطلبات -->
+
+            <a href="orders.html" class="admin-card">
+
+                <span>📦</span>
+
+                <h3>
+                    الطلبات
+                </h3>
+
+                <p>
+                    مشاهدة وإدارة طلبات العملاء
+                </p>
+
+            </a>
+
+
+            <!-- المنتجات -->
+
+            <a href="products.html" class="admin-card">
+
+                <span>🛍️</span>
+
+                <h3>
+                    المنتجات
+                </h3>
+
+                <p>
+                    إضافة وتعديل وحذف المنتجات
+                </p>
+
+            </a>
+
+
+            <!-- الأقسام -->
+
+            <a href="categories.html" class="admin-card">
+
+                <span>🏷️</span>
+
+                <h3>
+                    الأقسام
+                </h3>
+
+                <p>
+                    إدارة أقسام المكتبة
+                </p>
+
+            </a>
+
+
+            <!-- العروض -->
+
+            <a href="offers.html" class="admin-card">
+
+                <span>🔥</span>
+
+                <h3>
+                    العروض
+                </h3>
+
+                <p>
+                    إضافة وإدارة العروض
+                </p>
+
+            </a>
+
+
+            <!-- الطباعة والتصوير -->
+
+            <a href="#" class="admin-card">
+
+                <span>🖨️</span>
+
+                <h3>
+                    الطباعة والتصوير
+                </h3>
+
+                <p>
+                    إدارة طلبات الطباعة
+                </p>
+
+            </a>
+
+
+            <!-- تسجيل الخروج -->
+
+            <button
+                id="logoutBtn"
+                class="admin-card"
+                type="button"
+            >
+
+                <span>🚪</span>
+
+                <h3>
+                    تسجيل الخروج
+                </h3>
+
+                <p>
+                    الخروج من لوحة التحكم
+                </p>
+
+            </button>
+
+
+            <!-- زيارة الموقع -->
+
+            <a href="index.html" class="admin-card">
+
+                <span>🌐</span>
+
+                <h3>
+                    زيارة الموقع
+                </h3>
+
+                <p>
+                    العودة إلى متجر مكتبة رائف
+                </p>
+
+            </a>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         الفوتر
+    ========================= -->
+
+    <footer class="admin-footer">
+
+        <p>
+            © 2026 مكتبة رائف
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         Firebase + تسجيل الدخول
+    ========================= -->
+
+    <script type="module">
+
+        import { auth } from "./firebase-config.js";
+
+        import {
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+
+        /* =========================
+           التأكد من تسجيل الدخول
+        ========================= */
+
+        onAuthStateChanged(
+            auth,
+            function (user) {
+
+                if (!user) {
+
+                    window.location.href =
+                        "login.html";
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           تسجيل الخروج
+        ========================= */
+
+        const logoutBtn =
+            document.getElementById("logoutBtn");
+
+
+        logoutBtn.addEventListener(
+            "click",
+            async function () {
+
+                try {
+
+                    await signOut(auth);
+
+                    window.location.href =
+                        "login.html";
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    alert(
+                        "حدث خطأ أثناء تسجيل الخروج."
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+    <!-- =========================
+         إحصائيات لوحة التحكم
+    ========================= -->
+
+    <script>
+
+        /* =========================
+           الطلبات
+        ========================= */
+
+        const ordersCount =
+            document.getElementById(
+                "ordersCount"
+            );
+
+
+        const orders =
+            JSON.parse(
+                localStorage.getItem(
+                    "raefOrders"
+                )
+            ) || [];
+
+
+        if (ordersCount) {
+
+            ordersCount.textContent =
+                orders.length;
+
+        }
+
+
+        /* =========================
+           المنتجات
+        ========================= */
+
+        const productsCount =
+            document.getElementById(
+                "productsCount"
+            );
+
+
+        const products =
+            JSON.parse(
+                localStorage.getItem(
+                    "raefProducts"
+                )
+            ) || [];
+
+
+        if (productsCount) {
+
+            productsCount.textContent =
+                products.length;
+
+        }
+
+
+        /* =========================
+           الأقسام
+        ========================= */
+
+        const categoriesCount =
+            document.getElementById(
+                "categoriesCount"
+            );
+
+
+        const categories =
+            JSON.parse(
+                localStorage.getItem(
+                    "raefCategories"
+                )
+            ) || [];
+
+
+        if (categoriesCount) {
+
+            categoriesCount.textContent =
+                categories.length;
+
+        }
+
+
+        /* =========================
+           العروض
+        ========================= */
+
+        const offersCount =
+            document.getElementById(
+                "offersCount"
+            );
+
+
+        const offers =
+            JSON.parse(
+                localStorage.getItem(
+                    "raefOffers"
+                )
+            ) || [];
+
+
+        if (offersCount) {
+
+            offersCount.textContent =
+                offers.length;
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
